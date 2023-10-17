@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-full grid place-items-center">
+
+    <div id="app">
+        <section>
+            <h2 v-if="whoStrongestEmperorOfTheSea.length" class="font-bold mb-2"> Who is the strongest Emperor of the sea ? 🤔</h2>
+
+            <ul>
+                <li v-for="yonko in whoStrongestEmperorOfTheSea" :key="yonko.id">
+                    <label>
+                        {{ yonko.name }}
+
+                        <input type="checkbox" v-model="yonko.complete">
+                    </label>
+
+                </li>
+            </ul>
+
+        </section>
+
+        <section class="mt-8">
+            <h2 v-if="strongestEmperorOfTheSea.length"  class="font-bold mb-2">Here is the list of strongest Emperor of the sea 👍</h2>
+
+            <ul>
+                <li v-for="yonko in strongestEmperorOfTheSea" :key="yonko.id">
+                    <label>
+                        {{ yonko.name }}
+
+                        <input type="checkbox" v-model="yonko.complete">
+                    </label>
+
+                </li>
+            </ul>
+
+        </section>
+    </div>
+
+
+    <script>
+        let divSection = {
+            data() {
+                return {
+                    yonkos: [{
+                            id: 1,
+                            name: 'Red hair Shanks',
+                            complete: false
+                        },
+                        {
+                            id: 2,
+                            name: 'Marshal D. Teach',
+                            complete: false
+                        },
+                        {
+                            id: 3,
+                            name: 'Buggy The Clown',
+                            complete: false
+                        },
+                        {
+                            id: 4,
+                            name: 'Monkey D. Luffy',
+                            complete: false
+                        },
+                    ]
+                }
+            },
+
+            computed: {
+                whoStrongestEmperorOfTheSea() {
+                    return this.yonkos.filter(pirate => !pirate.complete);
+                },
+
+                strongestEmperorOfTheSea() {
+                    return this.yonkos.filter(pirate => pirate.complete);
+                }
+            }
+        }
+
+        Vue.createApp(divSection).mount('#app')
+    </script>
+</body>
+
+</html>
